@@ -1,5 +1,18 @@
 import { MenuItem } from '../types'
-import { Disclosure } from '@headlessui/react'
+import Image, { type StaticImageData } from 'next/image'
+
+import chaiImg from '../assets/chai.png'
+import coldCoffeeImg from '../assets/cold coffee.png'
+import coffeeImg from '../assets/coffee.png'
+import maggiImg from '../assets/maggi.png'
+import momosImg from '../assets/momos.png'
+import pastaImg from '../assets/pasta.png'
+import sandwichImg from '../assets/sandwich.png'
+import pizzaImg from '../assets/pizza.png'
+import burgerImg from '../assets/burger.png'
+import friesImg from '../assets/french fries.png'
+import milkshakeImg from '../assets/milkshake.png'
+import mocktailImg from '../assets/mocktails.png'
 
 interface MenuSectionProps {
   id: string
@@ -10,211 +23,56 @@ interface MenuSectionProps {
   onClick: () => void
 }
 
-import Image from 'next/image'
-
 const getCategoryIcon = (title: string) => {
+  const baseWrapper = (src: StaticImageData, alt: string) => (
+    <div className="w-12 h-12 relative rounded-2xl overflow-hidden">
+      <Image 
+        src={src} 
+        alt={alt} 
+        fill
+        className="object-contain w-full h-full"
+        sizes="48px"
+      />
+    </div>
+  )
+
   if (title.includes('Tea')) {
-    return (
-      <div className="w-12 h-12 relative rounded-2xl overflow-hidden">
-        <Image 
-          src={require('../assets/chai.png')} 
-          alt="Tea" 
-          fill
-          className="object-contain w-full h-full"
-          sizes="48px"
-        />
-      </div>
-    )
+    return baseWrapper(chaiImg, 'Tea')
   }
   if (title.includes('Cold Coffee')) {
-    return (
-      <div className="w-12 h-12 relative rounded-2xl overflow-hidden">
-        <Image 
-          src={require('../assets/cold coffee.png')} 
-          alt="Cold Coffee" 
-          fill
-          className="object-contain w-full h-full"
-          sizes="48px"
-        />
-      </div>
-    )
+    return baseWrapper(coldCoffeeImg, 'Cold Coffee')
   }
   if (title.includes('Coffee')) {
-    return (
-      <div className="w-12 h-12 relative rounded-2xl overflow-hidden">
-        <Image 
-          src={require('../assets/coffee.png')} 
-          alt="Coffee" 
-          fill
-          className="object-contain w-full h-full"
-          sizes="48px"
-        />
-      </div>
-    )
+    return baseWrapper(coffeeImg, 'Coffee')
   }
   if (title.includes('Maggi')) {
-    try {
-      const maggiImg = require('../assets/maggi.png');
-      return (
-        <div className="w-12 h-12 relative rounded-2xl overflow-hidden">
-          <Image 
-            src={maggiImg} 
-            alt="Maggi" 
-            fill
-            className="object-contain w-full h-full"
-            sizes="48px"
-          />
-        </div>
-      )
-    } catch {
-      return '🍜'
-    }
+    return baseWrapper(maggiImg, 'Maggi')
   }
   if (title.includes('Momos')) {
-    try {
-      const momosImg = require('../assets/momos.png');
-      return (
-        <div className="w-12 h-12 relative rounded-2xl overflow-hidden">
-          <Image 
-            src={momosImg} 
-            alt="Momos" 
-            fill
-            className="object-contain w-full h-full"
-            sizes="48px"
-          />
-        </div>
-      )
-    } catch {
-      return '🥟'
-    }
+    return baseWrapper(momosImg, 'Momos')
   }
   if (title.includes('Pasta')) {
-    try {
-      const pastaImg = require('../assets/pasta.png');
-      return (
-        <div className="w-12 h-12 relative rounded-2xl overflow-hidden">
-          <Image 
-            src={pastaImg} 
-            alt="Pasta" 
-            fill
-            className="object-contain w-full h-full"
-            sizes="48px"
-          />
-        </div>
-      )
-    } catch {
-      return '🍝'
-    }
+    return baseWrapper(pastaImg, 'Pasta')
   }
   if (title.includes('Sandwich')) {
-    try {
-      const sandwichImg = require('../assets/sandwich.png');
-      return (
-        <div className="w-12 h-12 relative rounded-2xl overflow-hidden">
-          <Image 
-            src={sandwichImg} 
-            alt="Sandwich" 
-            fill
-            className="object-contain w-full h-full"
-            sizes="48px"
-          />
-        </div>
-      )
-    } catch {
-      return '🥪'
-    }
+    return baseWrapper(sandwichImg, 'Sandwich')
   }
   if (title.includes('Pizza')) {
-    try {
-      const pizzaImg = require('../assets/pizza.png');
-      return (
-        <div className="w-12 h-12 relative rounded-2xl overflow-hidden">
-          <Image 
-            src={pizzaImg} 
-            alt="Pizza" 
-            fill
-            className="object-contain w-full h-full"
-            sizes="48px"
-          />
-        </div>
-      )
-    } catch {
-      return '🍕'
-    }
+    return baseWrapper(pizzaImg, 'Pizza')
   }
   if (title.includes('Burger')) {
-    try {
-      const burgerImg = require('../assets/burger.png');
-      return (
-        <div className="w-12 h-12 relative rounded-2xl overflow-hidden">
-          <Image 
-            src={burgerImg} 
-            alt="Burger" 
-            fill
-            className="object-contain w-full h-full"
-            sizes="48px"
-          />
-        </div>
-      )
-    } catch {
-      return '🍔'
-    }
+    return baseWrapper(burgerImg, 'Burger')
   }
   if (title.includes('French Fries')) {
-    try {
-      const friesImg = require('../assets/french fries.png');
-      return (
-        <div className="w-12 h-12 relative rounded-2xl overflow-hidden">
-          <Image 
-            src={friesImg} 
-            alt="French Fries" 
-            fill
-            className="object-contain w-full h-full"
-            sizes="48px"
-          />
-        </div>
-      )
-    } catch {
-      return '🍟'
-    }
+    return baseWrapper(friesImg, 'French Fries')
   }
   if (title.includes('Milkshake')) {
-    try {
-      const milkshakeImg = require('../assets/milkshake.png');
-      return (
-        <div className="w-12 h-12 relative rounded-2xl overflow-hidden">
-          <Image 
-            src={milkshakeImg} 
-            alt="Milkshake" 
-            fill
-            className="object-contain w-full h-full"
-            sizes="48px"
-          />
-        </div>
-      )
-    } catch {
-      return '🥤'
-    }
+    return baseWrapper(milkshakeImg, 'Milkshake')
   }
   if (title.includes('Mocktails')) {
-    try {
-      const mocktailImg = require('../assets/mocktails.png');
-      return (
-        <div className="w-12 h-12 relative rounded-2xl overflow-hidden">
-          <Image 
-            src={mocktailImg} 
-            alt="Mocktails" 
-            fill
-            className="object-contain w-full h-full"
-            sizes="48px"
-          />
-        </div>
-      )
-    } catch {
-      return '🍹'
-    }
+    return baseWrapper(mocktailImg, 'Mocktails')
   }
-  return '🍽️'
+  return <span className="text-2xl">🍽️</span>
 }
 
 const getCategoryColor = (title: string, featured: boolean) => {
